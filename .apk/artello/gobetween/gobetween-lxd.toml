@@ -1,0 +1,28 @@
+[logging]
+level = "info"
+output = "/var/log/gobetween.log"
+
+[servers.default]
+protocol = "tls"
+bind = "0.0.0.0:443"
+
+  [servers.default.tls]
+  cert_path = "/var/lib/gobetween/certificate.crt"
+  key_path = "/var/lib/gobetween/private.key"
+  min_version = "tls1"
+  max_version = "tls1.2"
+
+  [servers.default.sni]
+  read_timeout = "2s"
+  hostname_matching_strategy = "regexp"
+  unexpected_hostname_strategy = "reject"
+
+  [servers.default.discovery]
+  kind = "lxd"
+  interval = "30s"
+  lxd_server_address = "unix:///var/lib/lxd/unix.socket"
+  
+  lxd_container_label_key = "user.gobetween.label"
+  lxd_container_label_value = "web"
+  lxd_container_sni_key = "user.gobetween.sni"
+  lxd_container_port = 80
