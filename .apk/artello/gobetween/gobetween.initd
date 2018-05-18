@@ -1,0 +1,29 @@
+#!/sbin/openrc-run
+
+name=gobetween
+flavor=lxd
+description="Load Balancer"
+command=/var/lib/$name/bin/$name
+cfgfile=/var/lib/$name/$name-$flavor.toml
+command_args="-c $cfgfile"
+
+depend() {
+  need net
+  after firewall
+}
+
+start() {
+  ebegin "Starting ${name}"
+  start-stop-daemon --start --background \
+    --make-pidfile --pidfile /var/run/${name}.pid \
+    --exec ${command} -- $command_args
+  eend $?
+}
+
+stop() {
+  ebegin "Stopping ${name}"
+    start-stop-daemon --stop --quiet \
+      --pidfile /var/run/${name}.pid \
+      --exec ${command}
+  eend $?
+}

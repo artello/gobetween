@@ -1,0 +1,40 @@
+# Contributor: Zack Siri <zack@artellectual.com>
+# Maintainer: Zack Siri <zack@artellectual.com>
+pkgname=gobetween
+pkgver=0.5.0
+pkgrel=5
+pkgdesc="GoBetween Router"
+url="http://gobetween.io"
+arch="all !aarch64"
+options="!check"
+license="MIT"
+depends=""
+makedepends=""
+install="
+  $pkgname.pre-install
+"
+pkgusers="$pkgname"
+pkggroups="$pkgname"
+source="
+	$pkgname-$pkgver.tar.gz::https://github.com/yyyar/$pkgname/releases/download/$pkgver/${pkgname}_${pkgver}_linux_amd64.tar.gz
+	$pkgname.initd
+	$pkgname-lxd.toml
+"
+
+builddir="${srcdir}"
+
+build() {
+	cd "$builddir"
+}
+
+package() {
+	mkdir -p "$pkgdir"
+
+	cd "$pkgdir"
+
+  install -dm755 -o $pkgusers -g $pkggroups ./var/lib/"$pkgname"/
+
+	install -Dm755 "$builddir"/$pkgname.initd ./etc/init.d/$pkgname
+	install -Dm755 "$builddir"/$pkgname ./var/lib/$pkgname/bin/$pkgname
+	install -Dm644 "$builddir"/$pkgname-lxd.toml ./var/lib/$pkgname/$pkgname-lxd.toml
+}
