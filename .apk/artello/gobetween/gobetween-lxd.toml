@@ -20,7 +20,7 @@ bind = "0.0.0.0:443"
   [servers.default.discovery]
   kind = "lxd"
   interval = "30s"
-  lxd_server_address = "unix:///var/lib/lxd/unix.socket"
+  lxd_server_address = "unix:///var/snap/lxd/common/lxd/unix.socket"
   
   lxd_container_label_key = "user.gobetween.label"
   lxd_container_label_value = "web"
