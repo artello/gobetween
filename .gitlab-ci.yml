@@ -3,6 +3,8 @@ variables:
   GIT_STRATEGY: fetch
 
 build:
+  tags:
+    - alpine-sdk
   script:
     - "cd .apk/artello/gobetween"
     - "abuild checksum"
