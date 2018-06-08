@@ -1,8 +1,12 @@
+stages:
+  - build
+
 variables:
   REPODEST: /home/builder/packages/${CI_COMMIT_REF_NAME}
   GIT_STRATEGY: fetch
 
 build:
+  stage: build
   tags:
     - alpine-sdk
   script:
