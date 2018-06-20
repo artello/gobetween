@@ -2,7 +2,11 @@
 
 su -c 'curl https://get.acme.sh | sh'
 
-keys="DOMAIN_NAME"
+keys="
+  CF_Key \
+  CF_Email \
+  DOMAIN_NAME \
+"
 
 for k in ${keys}; do
   export ${k}="$(curl -s --unix-socket /dev/lxd/sock x/1.0/config/user.${k})"

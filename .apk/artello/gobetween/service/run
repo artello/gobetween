@@ -1,8 +1,6 @@
 #!/bin/sh
 
 keys="
-  CF_Key \
-  CF_Email \
   LXD_ADDRESS \
   LXD_REMOTE_NAME \
   LXD_REMOTE_PASSWORD \
