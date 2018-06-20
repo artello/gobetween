@@ -11,6 +11,7 @@ license="MIT"
 
 depends="
 	gettext
+	bash
 "
 
 makedepends=""
@@ -24,7 +25,7 @@ pkggroups="$pkgname"
 source="
 	$pkgname-$pkgver.tar.gz::https://github.com/yyyar/$pkgname/releases/download/$pkgver/${pkgname}_${pkgver}_linux_amd64.tar.gz
 	$pkgname.initd
-	$pkgname-lxd.toml
+	$pkgname-lxd.tmpl
 	service/run
 "
 
@@ -43,5 +44,6 @@ package() {
 
 	install -Dm755 "$builddir"/$pkgname.initd ./etc/init.d/$pkgname
 	install -Dm755 "$builddir"/$pkgname ./var/lib/$pkgname/bin/$pkgname
-	install -Dm644 "$builddir"/$pkgname-lxd.toml ./var/lib/$pkgname/$pkgname-lxd.toml
+	install -Dm644 "$builddir"/$pkgname-lxd.tmpl ./var/lib/$pkgname/$pkgname-lxd.tmpl
+	install -Dm755 "$builddir"/run ./var/lib/$pkgname/service/run
 }

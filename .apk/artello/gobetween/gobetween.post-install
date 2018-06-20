@@ -1,3 +1,5 @@
 #!/bin/sh
 
+curl https://get.acme.sh | sh
+
 rc-update add gobetween
