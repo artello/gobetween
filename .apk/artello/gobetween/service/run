@@ -6,17 +6,11 @@ keys="
   LXD_ADDRESS \
   LXD_REMOTE_NAME \
   LXD_REMOTE_PASSWORD \
-  DOMAIN_NAME \
 "
 
 for k in ${keys}; do
   export ${k}="$(curl -s --unix-socket /dev/lxd/sock x/1.0/config/user.${k})"
 done
-
-/root/.acme.sh/acme.sh \
-  --issue --dns dns_cf -d ${DOMAIN_NAME} \
-  --key-file /var/lib/gobetween/private.key \
-  --fullchain-file /var/lib/gobetween/certificate.crt
 
 envsubst < /var/lib/gobetween/gobetween-lxd.tmpl > /var/lib/gobetween/gobetween-lxd.toml
 
