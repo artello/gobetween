@@ -12,9 +12,10 @@ build:
   tags:
     - alpine-sdk
   script:
+    - "rm -rf ${PACKAGE_DEST}"
     - "cd .apk/artello/gobetween"
     - "abuild checksum"
     - "abuild -r"
-    - "s3cmd sync ${S3_DEST} ${REPODEST}"
+    - "s3cmd sync ${S3_DEST} ${PACKAGE_DEST}"
     - "abuild cleanoldpkg"
-    - "s3cmd sync --delete-removed ${REPODEST} ${S3_DEST}"
+    - "s3cmd sync --delete-removed ${PACKAGE_DEST} ${S3_DEST}"
