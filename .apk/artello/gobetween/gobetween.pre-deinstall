@@ -2,4 +2,5 @@
 
 rm -rf /root/.acme.sh
 
+rc-service gobetween stop
 rc-update del gobetween
