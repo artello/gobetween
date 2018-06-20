@@ -15,6 +15,8 @@ done
 su -c "/root/.acme.sh/acme.sh \
         --issue --dns dns_cf -d ${DOMAIN_NAME} \
         --key-file /var/lib/gobetween/private.key \
-        --fullchain-file /var/lib/gobetween/certificate.crt"
+        --fullchain-file /var/lib/gobetween/certificate.crt \
+        --reloadcmd 'rc-service gobetween restart'"
 
 rc-update add gobetween
+rc-service gobetween start
