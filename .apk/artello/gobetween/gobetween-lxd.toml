@@ -1,6 +1,6 @@
 [logging]
 level = "info"
-output = "/var/log/gobetween.log"
+output = "var/log/gobetween.log"
 
 [servers.default]
 protocol = "tls"
@@ -20,8 +20,12 @@ bind = "0.0.0.0:443"
   [servers.default.discovery]
   kind = "lxd"
   interval = "30s"
-  lxd_server_address = "unix:///var/snap/lxd/common/lxd/unix.socket"
-  
+  lxd_server_address = "${LXD_ADDRESS}"
+  lxd_server_remote_name = "${LXD_REMOTE_NAME}"
+  lxd_server_remote_password = "${LXD_REMOTE_PASSWORD}"
+  lxd_generate_client_certs = true
+  lxd_accept_server_cert = true
+
   lxd_container_label_key = "user.gobetween.label"
   lxd_container_label_value = "web"
   lxd_container_sni_key = "user.gobetween.sni"

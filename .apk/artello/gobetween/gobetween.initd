@@ -6,5 +6,10 @@ s6_service_path="${RC_SVCDIR}/s6-scan/${name}"
 
 depend() {
   need net s6-svscan
-  after firewall
+}
+
+start_pre() {
+  if [ ! -L "${RC_SVCDIR}/s6-scan/${name}" ]; then
+    ln -s "/var/lib/${name}/service" "${RC_SVCDIR}/s6-scan/${name}"
+  fi
 }

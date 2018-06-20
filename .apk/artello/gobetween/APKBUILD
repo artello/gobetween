@@ -2,17 +2,23 @@
 # Maintainer: Zack Siri <zack@artellectual.com>
 pkgname=gobetween
 pkgver=0.5.0
-pkgrel=6
+pkgrel=7
 pkgdesc="GoBetween Router"
 url="http://gobetween.io"
 arch="all !aarch64"
 options="!check"
 license="MIT"
-depends=""
+
+depends="
+	gettext
+"
+
 makedepends=""
+
 install="
   $pkgname.pre-install
 "
+
 pkgusers="$pkgname"
 pkggroups="$pkgname"
 source="
