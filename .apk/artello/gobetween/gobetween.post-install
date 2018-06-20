@@ -1,5 +1,5 @@
 #!/bin/sh
 
-curl https://get.acme.sh | sh
+cd /var/lib && curl https://get.acme.sh | sh
 
 rc-update add gobetween
