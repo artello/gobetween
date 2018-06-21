@@ -10,6 +10,6 @@ for k in ${keys}; do
   export ${k}="$(curl -s --unix-socket /dev/lxd/sock x/1.0/config/user.${k})"
 done
 
-envsubst < /var/lib/gobetween/gobetween-lxd.tmpl > /var/lib/gobetween/gobetween-lxd.toml
+envsubst < /var/lib/gobetween/gobetween-lxd.tmpl.toml > /var/lib/gobetween/gobetween-lxd.toml
 
 exec /var/lib/gobetween/bin/gobetween -c /var/lib/gobetween/gobetween-lxd.toml

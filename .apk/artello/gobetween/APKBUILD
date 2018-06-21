@@ -28,7 +28,7 @@ pkggroups="$pkgname"
 source="
 	$pkgname-$pkgver.tar.gz::https://github.com/yyyar/$pkgname/releases/download/$pkgver/${pkgname}_${pkgver}_linux_amd64.tar.gz
 	$pkgname.initd
-	$pkgname-lxd.tmpl
+	$pkgname-lxd.tmpl.toml
 	service/run
 "
 
@@ -47,6 +47,6 @@ package() {
 
 	install -Dm755 "$builddir"/$pkgname.initd ./etc/init.d/$pkgname
 	install -Dm755 "$builddir"/$pkgname ./var/lib/$pkgname/bin/$pkgname
-	install -Dm644 "$builddir"/$pkgname-lxd.tmpl ./var/lib/$pkgname/$pkgname-lxd.tmpl
+	install -Dm644 "$builddir"/$pkgname-lxd.tmpl.toml ./var/lib/$pkgname/$pkgname-lxd.tmpl.toml
 	install -Dm755 "$builddir"/run ./var/lib/$pkgname/service/run
 }

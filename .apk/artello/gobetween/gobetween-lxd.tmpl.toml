@@ -1,6 +1,6 @@
 [logging]
 level = "info"
-output = "var/log/gobetween.log"
+output = "/var/log/gobetween.log"
 
 [servers.default]
 protocol = "tls"
