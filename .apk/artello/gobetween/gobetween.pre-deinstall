@@ -1,6 +1,6 @@
 #!/bin/sh
 
-rm -rf /root/.acme.sh
+/root/.acme.sh/acme.sh --uninstall
 
 rc-service gobetween stop
 rc-update del gobetween

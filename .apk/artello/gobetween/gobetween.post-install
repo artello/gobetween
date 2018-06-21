@@ -6,6 +6,7 @@ keys="
   CF_Key \
   CF_Email \
   DOMAIN_NAMES \
+  STAGING \
 "
 
 for k in ${keys}; do
@@ -17,7 +18,14 @@ for d in ${domains}; do
   parameters=$parameters" -d $d"
 done
 
-su -c "/root/.acme.sh/acme.sh --staging \
+if [ -z ${STAGING} ]
+then
+  env="--staging"
+else
+  env=""
+fi
+
+su -c "/root/.acme.sh/acme.sh ${env} \
         --issue --dns dns_cf ${parameters} \
         --key-file /var/lib/gobetween/private.key \
         --fullchain-file /var/lib/gobetween/certificate.crt \
