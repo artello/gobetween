@@ -17,7 +17,7 @@ for d in ${domains}; do
   parameters=$parameters" -d $d"
 done
 
-su -c "/root/.acme.sh/acme.sh \
+su -c "/root/.acme.sh/acme.sh --staging \
         --issue --dns dns_cf ${parameters} \
         --key-file /var/lib/gobetween/private.key \
         --fullchain-file /var/lib/gobetween/certificate.crt \
