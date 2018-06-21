@@ -5,15 +5,20 @@ su -c 'curl https://get.acme.sh | sh'
 keys="
   CF_Key \
   CF_Email \
-  DOMAIN_NAME \
+  DOMAIN_NAMES \
 "
 
 for k in ${keys}; do
   export ${k}="$(curl -s --unix-socket /dev/lxd/sock x/1.0/config/user.${k})"
 done
 
+domains=$(echo $DOMAIN_NAMES | tr "," "\n")
+for d in ${domains}; do
+  parameters=$parameters" -d $d"
+done
+
 su -c "/root/.acme.sh/acme.sh \
-        --issue --dns dns_cf -d ${DOMAIN_NAME} \
+        --issue --dns dns_cf ${parameters} \
         --key-file /var/lib/gobetween/private.key \
         --fullchain-file /var/lib/gobetween/certificate.crt \
         --reloadcmd 'rc-service gobetween restart'"
