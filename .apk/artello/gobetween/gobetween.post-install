@@ -18,7 +18,7 @@ for d in ${domains}; do
   parameters=$parameters" -d $d"
 done
 
-if [ ${STAGING} -eq "true" ]
+if [ ${STAGING} == "true" ]
 then
   env="--staging"
 else
