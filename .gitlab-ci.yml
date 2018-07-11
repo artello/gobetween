@@ -4,7 +4,7 @@ stages:
 variables:
   REPODEST: /home/builder/packages/${CI_COMMIT_REF_NAME}
   PACKAGE_DEST: /home/builder/packages/${CI_COMMIT_REF_NAME}/${CI_PROJECT_NAMESPACE}/
-  S3_DEST: s3://artellectual.apk.build/packages/${CI_COMMIT_REF_NAME}/${CI_PROJECT_NAMESPACE}/
+  S3_DEST: s3://apk.build/packages/${CI_COMMIT_REF_NAME}/${CI_PROJECT_NAMESPACE}/
   GIT_STRATEGY: fetch
 
 build:
